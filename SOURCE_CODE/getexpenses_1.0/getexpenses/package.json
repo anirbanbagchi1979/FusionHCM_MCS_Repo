@@ -1,0 +1,15 @@
+{
+  "name" : "getexpenses",
+  "version" : "1.0.0",
+  "description" : "Get Expenses Information from ERP Financials",
+  "main" : "getexpenses.js",
+  "dependencies": {
+       "xml2js":"0.4.4"
+   },
+  "oracleMobile" : {
+    "dependencies" : {
+      "apis" : { },
+      "connectors" : {"/mobile/connector/financials_expense":"1.0" }
+    }
+  }
+}

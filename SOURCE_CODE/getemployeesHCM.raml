@@ -1,0 +1,174 @@
+#%RAML 0.8
+title: HCM_Employees_API_AB
+version: 1.0
+baseUri: /mobile/custom/getemployeesHCM
+protocols: [HTTPS]
+mediaType: "application/json"
+/employees:
+  description: |
+    Resource Description
+    
+  get:
+    description: |
+      Description
+      
+    protocols: [HTTPS]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                  {
+                    "DisplayName": "Andrew Hardaker",
+                    "FirstName": "Andrew",
+                    "PersonNumber": "971",
+                    "PersonId": 300000051360869,
+                    "WorkPhoneCountryCode": "44",
+                    "WorkPhoneAreaCode": "131",
+                    "WorkPhoneNumber": "9253034",
+                    "WorkEmail": "fap0074-andrew.hardaker@oracleads.com",
+                    "AddressLine1": "56 Dumbarton Road",
+                    "City": "London",
+                    "Country": "GB"
+                  },
+                  {
+                    "DisplayName": "Andrew Moore",
+                    "FirstName": "Andrew",
+                    "PersonNumber": "67",
+                    "PersonId": 300000047734125,
+                    "WorkPhoneCountryCode": "1",
+                    "WorkPhoneAreaCode": "770",
+                    "WorkPhoneNumber": "675-5387",
+                    "WorkEmail": "fap0074-andrew.moore@oracleads.com",
+                    "AddressLine1": "4992 Sutter Street",
+                    "City": "Atlanta",
+                    "Country": "US"
+                  },
+                  {
+                    "DisplayName": "Andrew Mullen",
+                    "FirstName": "Andrew",
+                    "PersonNumber": "1057",
+                    "PersonId": 300000069329243,
+                    "WorkPhoneCountryCode": null,
+                    "WorkPhoneAreaCode": null,
+                    "WorkPhoneNumber": null,
+                    "WorkEmail": null,
+                    "AddressLine1": "145 Riverview Drive",
+                    "City": "San Francisco",
+                    "Country": "US"
+                  },
+                  {
+                    "DisplayName": "Andrew Strong",
+                    "FirstName": "Andrew",
+                    "PersonNumber": "2202",
+                    "PersonId": 300000101916154,
+                    "WorkPhoneCountryCode": "1",
+                    "WorkPhoneAreaCode": "655",
+                    "WorkPhoneNumber": "123-4567",
+                    "WorkEmail": null,
+                    "AddressLine1": "1 Bayshore",
+                    "City": "Santa Monica",
+                    "Country": "US"
+                  }
+                ]
+              
+  /{firstname}:
+    description: |
+      Resource Description
+      
+    uriParameters:
+      firstname:
+        displayName: firstname
+        description: |
+          Description
+          
+        type: string
+        required: true
+    get:
+      description: |
+        Description
+        
+      responses:
+        200:
+          description: |
+            Description
+            
+          body:
+            application/json:
+              example: |
+                {
+                  "Employees": [
+                    {
+                      "DisplayName": "Andrew Hardaker",
+                      "FirstName": "Andrew",
+                      "PersonNumber": "971",
+                      "PersonId": 300000051360869,
+                      "WorkPhoneCountryCode": "44",
+                      "WorkPhoneAreaCode": "131",
+                      "WorkPhoneNumber": "9253034",
+                      "WorkEmail": "fap0074-andrew.hardaker@oracleads.com",
+                      "AddressLine1": "56 Dumbarton Road",
+                      "City": "London",
+                      "Country": "GB"
+                    },
+                    {
+                      "DisplayName": "Andrew Moore",
+                      "FirstName": "Andrew",
+                      "PersonNumber": "67",
+                      "PersonId": 300000047734125,
+                      "WorkPhoneCountryCode": "1",
+                      "WorkPhoneAreaCode": "770",
+                      "WorkPhoneNumber": "675-5387",
+                      "WorkEmail": "fap0074-andrew.moore@oracleads.com",
+                      "AddressLine1": "4992 Sutter Street",
+                      "City": "Atlanta",
+                      "Country": "US"
+                    }
+                   ]
+                 }
+                
+  /search:
+    description: |
+      Resource Description
+      
+    /{personID}:
+      description: |
+        Resource Description
+        
+      uriParameters:
+        personID:
+          displayName: personID
+          description: |
+            Description
+            
+          type: string
+          required: true
+      get:
+        description: |
+          Description
+          
+        responses:
+          200:
+            description: |
+              Description
+              
+            body:
+              application/json:
+                example: |
+                  {
+                        "DisplayName": "Andrew Hardaker",
+                        "FirstName": "Andrew",
+                        "PersonNumber": "971-HC",
+                        "PersonId": 300000051360869,
+                        "WorkPhoneCountryCode": "44",
+                        "WorkPhoneAreaCode": "131",
+                        "WorkPhoneNumber": "9253034",
+                        "WorkEmail": "fap0074-andrew.hardaker@oracleads.com",
+                        "AddressLine1": "56 Dumbarton Road",
+                        "City": "London",
+                        "Country": "GB"
+                  	  
+                  
+                  }
+                  

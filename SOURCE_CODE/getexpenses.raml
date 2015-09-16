@@ -1,0 +1,68 @@
+#%RAML 0.8
+title: FIN_Expenses_API_AB
+version: 1.0
+baseUri: /mobile/custom/getexpenses
+protocols: [HTTPS]
+mediaType: "application/json"
+/expenses:
+  description: |
+    Resource Description
+    
+  /{id}:
+    description: |
+      Resource Description
+      
+    uriParameters:
+      id:
+        displayName: id
+        description: |
+          Description
+          
+        type: string
+        required: true
+    get:
+      description: |
+        Description
+        
+      body:
+        application/json:
+      responses:
+        200:
+          description: |
+            Description
+            
+          body:
+            application/json:
+              example: |
+                {
+                  "ExpenseReportId": "300000100107178",
+                  "ReimbursementCurrencyCode": "USD",
+                  "CurrentApproverId": "300000050712697",
+                  "ReportSubmitDate": "2015-06-03",
+                  "ExpenseStatusCode": "PEND_MGR_APPROVAL",
+                  "ReceiptsStatusCode": "REQUIRED",
+                  "Lines": [
+                    {
+                      "ExpenseCategoryCode": "BUSINESS",
+                      "ExpenseTypeCategoryCode": "AIRFARE",
+                      "MerchantName": "United",
+                      "ExpenseTypeName": "Air",
+                	  "Amount" : 100
+                    },
+                    {
+                      "ExpenseCategoryCode": "BUSINESS",
+                      "ExpenseTypeCategoryCode": "CAR_RENTAL",
+                      "MerchantName": "Hertz",
+                      "ExpenseTypeName": "Car Rental",
+                	  "Amount" : 350
+                    },
+                    {
+                      "ExpenseCategoryCode": "BUSINESS",
+                      "ExpenseTypeCategoryCode": "ACCOMMODATIONS",
+                      "MerchantName": "Marriott",
+                      "ExpenseTypeName": "Hotel",
+                	  "Amount" : 170
+                    }
+                  ]
+                }
+                

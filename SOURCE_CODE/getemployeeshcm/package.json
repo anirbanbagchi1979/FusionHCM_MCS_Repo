@@ -1,0 +1,15 @@
+{
+  "name" : "getemployeeshcm",
+  "version" : "1.0.0",
+  "description" : "Get Employees from HCM",
+  "main" : "getemployeeshcm.js",
+  "dependencies": {
+       "async":"1.4.2"
+   },
+  "oracleMobile" : {
+    "dependencies" : {
+      "apis" : { },
+      "connectors" : { "/mobile/connector/HCM_TestConnector_AB":"1.0"}
+    }
+  }
+}

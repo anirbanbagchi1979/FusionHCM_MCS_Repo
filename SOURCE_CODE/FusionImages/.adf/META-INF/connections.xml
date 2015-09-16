@@ -1,0 +1,13 @@
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+  <Reference name="MCS_Giraffe" className="oracle.adf.model.connection.rest.RestConnection" xmlns="">
+    <Factory className="oracle.adf.model.connection.rest.RestConnectionFactory"/>
+    <RefAddresses>
+      <XmlRefAddr addrType="MCS_Giraffe">
+        <Contents>
+          <restconnection name="MCS_Giraffe"
+                          url="http://unit0424.oracleads.com:7201/mobile/custom/getemployeesHCM/employees/search/"/>
+        </Contents>
+      </XmlRefAddr>
+    </RefAddresses>
+  </Reference>
+</References>
