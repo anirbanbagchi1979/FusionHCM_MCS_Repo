@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# include functions
+. scripts/install_functions.sh
+
+for arg in "$@"
+do
+case $arg in
+    # up)
+    #   # Start mongo
+    #   start_mongodb
+    #
+    #   # start App store
+    #   appstore_up
+    # shift
+    # ;;
+
+    init)
+      ensure_node
+
+      if [ $? -ne 0 ]
+        then
+          echo "Dependencies not met. Aborting."
+          exit 1;
+      fi
+
+      # install node globals
+      ensure_node_globals
+      ensure_appDependencies
+      clean_up_scriptGen
+      setup_cordova
+    shift
+    ;;
+
+    # down)
+    #   stop_mongodb;
+    #   appstore_down;
+    # shift
+    # ;;
+
+    *)
+      echo "Usage : configure [ init ]"
+    ;;
+esac
+done

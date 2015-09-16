@@ -1,0 +1,93 @@
+<ion-view>
+
+  <ion-content>
+    <div id="home" class="page-container">
+      <!-- <div class="train-container">
+        <div class="train-step" ng-repeat="trainStep in trainSteps" ng-class="getTickerClass(trainStep[0].status)" ng-click="setFilter(trainStep[0].status)">
+          <div class="train-icon-area">
+            <div ng-class="getIcon(trainStep[0].status)"></div>
+          </div>
+          <div class="train-text">
+            <span>{{trainStep[0].status}}</span>
+          </div>
+          <div class="train-value">
+            <span>{{trainStep.length}}</span>
+          </div>
+        </div>
+      </div> -->
+      <div class="jobs-process-cntr">
+        <div class="jobs-heading">
+          <!-- <span class="jobs-heading-text" ng-show="isServiceWriter()">SHOP JOBS IN PROGRESS {{filterCriteria.status.length>0 ? '('+filterCriteria.status+')' :''}}</span> -->
+<!-- 		 <span class="jobs-heading-text" >Employees</span> -->
+          <div class="jobs-heading-buttons">
+            <button class="button icon-left ion-ios-close-empty export-csv-button" ng-show="filterCriteria.status.length>0" ng-click="clearFilters()">Clear Filters</button>
+            <!-- <button class="button icon-left ion-ios-upload-outline export-csv-button" ng-click="saveCSV()">Export to CSV</button> -->
+            <button class="button icon-left ion-ios-plus-empty create-job-button" ng-show="isServiceWriter()" ui-sref="app.jobs.intake({jobId:'new'})">Create New Job</button>
+          </div>
+        </div>
+        <div class="shopjobs-search-bar">
+          <div class="shopjobs-search-input">
+            <i class="icon ion-search placeholder-icon jobsearch-icon"></i>
+            <input type="text" placeholder="Search" ng-model="searchValue">
+          </div>
+          <!-- <div class="button icon-left ion-ios-close-empty shopjobs-search-clearBtn">Clear Search</div> -->
+        </div>
+        <div class="jobs-table">
+          <div class="jobs-table-header row">
+            <span class="jobs-table-header-col col">Name</span>
+            <span class="jobs-table-header-col col">Person Id</span>
+            <span class="jobs-table-header-col col">Phone Number</span>
+            <span class="jobs-table-header-col col">Address</span>
+            <span class="jobs-table-header-col col">City</span>
+          </div>
+          <div class="jobs-table-data large-form">
+            <div class="jobs-table-data-row row " ng-repeat="employee in employees|filter:filterCriteria | searchJobs:searchValue" ui-sref="app.jobs.triage({PersonId : employee.PersonId})">
+              <span class="jobs-table-data-col col">{{employee.DisplayName}}</span>
+              <a class="jobs-table-data-col col">
+                <span class="jobs-table-data-col col">{{employee.PersonId}}</span>
+              </a>
+			  <!--
+              <div class="jobs-table-data-col col" ng-show="isServiceWriter()">
+                <img class="profile-pic" ng-src="{{getAssignedPic(employee.assignedTo)}}">
+                <div>{{employee.WorkPhoneNumber}}</div>
+              </div> -->
+              <div class="jobs-table-data-col col">
+                <img class="job-type-pic" ng-src="{{getJobTypeIcon(employee.jobType)}}">
+                <div>{{employee.WorkPhoneNumber}}</div>
+              </div>
+              <span class="jobs-table-data-col col" >{{employee.AddressLine1}}</span>
+              <span class="jobs-table-data-col col" >{{employee.City}}</span>
+            </div>
+          </div>
+          <div class="jobs-table-data small-form">
+            <div class="jobs-table-data-row row " ng-repeat="employee in employees |filter:filterCriteria  | searchJobs:searchValue" ui-sref="app.jobs.triage({PersonId : employee.PersonId})">
+              <div class="row">
+                <span class="jobs-table-data-col jobs-table-cust-name col">{{employee.DisplayName}}</span>
+                <span class="jobs-table-data-col jobs-table-cust-workorder col">{{employee.PersonId}}</span>
+                <span class="jobs-table-data-col col" >{{employee.WorkPhoneNumber}}</span>
+                <div class="jobs-table-data-col jobs-table-cust-jobtype col">
+                  <img class="job-type-pic" ng-src="{{getJobTypeIcon(employee.jobType)}}">
+                  <div>{{employee.jobType}}</div>
+                </div>
+
+              </div>
+              <!--<div class="row">
+                <div class="jobs-table-data-col col" ng-show="isServiceWriter()">
+                  <img class="profile-pic" ng-src="{{getAssignedPic(employee.assignedTo)}}">
+                  <div>{{employee.assignedTo}}</div>
+                </div> -->
+                <span class="jobs-table-data-col col" ng-class="getStatusClass(employee.status)">{{employee.AddressLine1}}</span>
+                <span class="jobs-table-data-col col" ng-class="getStatusClass(employee.status)">{{employee.City}}</span>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+  
+
+    </div>
+  </ion-content>
+</ion-view>

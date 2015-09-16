@@ -1,0 +1,101 @@
+<ion-view>
+  <ion-content id="jobintake" class="job-container">
+
+    <div class="progress-process-cntr">
+
+          <div class="intake-top-bar">
+
+            <div class="intake-train">
+              <div class="train-block" ng-repeat="step in steps" ng-click="setState($index)">
+                <div class="intake-train-stop" >
+                  <svg height="10" width="10">
+                    <circle ng-class="getTrainClass($index)" r="4" cy="5" cx="5" />
+                  </svg>
+                  <span ng-class="getTrainClass($index)">{{steps[$index]}}</span>
+                </div>
+                <svg height="10" width="80" class="canvas-line" ng-if="$index < (steps.length-1)">
+                  <line x1="0" y1="0" x2="100" y2="0" style="stroke:#515251;stroke-width:2" opacity="0.1" />
+                </svg>
+              </div>
+
+            </div>
+
+
+
+
+      </div>
+      <div class="intake-form">
+        <div class="intake-form-heading">
+          <span>Customer</span>
+        </div>
+        <div class="">
+          <ion-spinner class="spinner-assertive" icon="lines" ng-show="showSpinner"></ion-spinner>
+          <span ng-hide="!workOrder.workOrder">Work Order : {{workOrder.workOrder}}</span>
+        </div>
+        <div ng-show="state == 0">
+          <div class="intake-form-field" ng-class="customerEmpty?'intake-form-field-error':''">
+            <input type="text" class="intake-input-field" ng-model="workOrder.customer" placeholder="Company Name">
+          </div>
+          <div class="intake-form-field" ng-class="esnEmpty?'intake-form-field-error':''">
+            <input type="text" class="intake-input-field" ng-model="workOrder.esn" placeholder="ESN">
+          </div>
+          <div class="intake-form-field" ng-class="mileageEmpty?'intake-form-field-error':''">
+            <input type="text" class="intake-input-field" ng-model="workOrder.mileage" placeholder="Mileage">
+          </div>
+          <div class="intake-form-field" ng-class="complaintEmpty?'intake-form-field-error':''">
+            <input type="text" class="intake-input-field" ng-model="workOrder.customerComplaint"
+              placeholder="Customer Complaint">
+          </div>
+        </div>
+        <div ng-show="state == 1">
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.make_model" placeholder="Make / Model">
+          </div>
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.vin" placeholder="VIN">
+          </div>
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.year" placeholder="Year">
+          </div>
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.application"
+              placeholder="Application">
+          </div>
+        </div>
+        <div ng-show="state == 2">
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.visualInspection" placeholder="Visual Inspection Comments">
+          </div>
+        </div>
+        <div ng-show="state == 3">
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.history" placeholder="History">
+          </div>
+        </div>
+        <div ng-show="state == 4">
+          <div class="intake-form-field">
+            <input type="text" class="intake-input-field" ng-model="workOrder.waranty" placeholder="Warranty Information">
+          </div>
+        </div>
+        <div class="intake-form-button-area">
+          <button type="button" ui-sref="app.home"
+            class="button form-button form-button-negative">Cancel</button>
+          <button type="button" class="button form-button form-button-positive"
+            ng-click="createWorkOrder()" >Create</button>
+          
+
+        </div>
+      </div>
+
+      <hr class="full-line">
+      <div class="nav-buttons">
+
+        <a ui-sref="app.home"
+          class="button icon icon-right ion-chevron-right form-button
+                  form-button-proceed" >Continue</a>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

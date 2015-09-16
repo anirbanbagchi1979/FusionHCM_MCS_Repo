@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfmf:application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adfmf="http://xmlns.oracle.com/adf/mf"
+                   version="1.0" name="CSS" id="com.oraclecorp.ent3.demo.CSS"
+                   appControllerFolder="ApplicationController"
+                   listener-class="oracle.demo.css.application.LifeCycleListenerImpl">
+  <adfmf:featureReference refId="oracle.demo.css.Main" id="fr1"/>
+  <adfmf:navigation>
+    <adfmf:navigationBar enabled="false"/>
+  </adfmf:navigation>
+</adfmf:application>

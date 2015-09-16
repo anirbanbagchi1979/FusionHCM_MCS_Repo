@@ -1,0 +1,112 @@
+<ion-view>
+
+    <ion-content id="jobintake" class="job-container">
+            <div class="progress-process-cntr">
+
+                <div class="row">
+                    <h3 class="text-center">Employee Details: {{selectedEmployee.DisplayName}}</h3>
+                </div>
+
+                <div class="Job-overview-main">
+				
+                    <h3 class="text-center">Employee</h3>
+
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Name</div>
+                        <div class="col col-60">{{selectedEmployee.DisplayName}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Person Number</div>
+                        <div class="col col-60">{{selectedEmployee.PersonNumber}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Person Id</div>
+                        <div class="col col-60">{{selectedEmployee.PersonId}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">PHONE</div>
+                        <div class="col col-60">{{selectedEmployee.WorkPhoneNumber|tel}}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">EMAIL</div>
+                        <div class="col col-60">{{selectedEmployee.WorkEmail}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Address</div>
+                        <div class="col col-60">{{selectedEmployee.AddressLine1}}</div>
+                    </div>
+                </div>
+				<div class="Job-overview-main">
+				
+                    <h3 class="text-center">Latest Expense</h3>
+
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Export Report ID</div>
+                        <div class="col col-60">{{expenseReportDetails.ExpenseReportId}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Report Submit Date</div>
+                        <div class="col col-60">{{expenseReportDetails.ReportSubmitDate}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Expense Status Code</div>
+                        <div class="col col-60">{{expenseReportDetails.ExpenseStatusCode}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60 text-right Job-overview-title">Receipts Status Code</div>
+                        <div class="col col-60">{{expenseReportDetails.ReceiptsStatusCode}}</div>
+                    </div>
+					
+                </div>
+				<div class="Job-overview-main">
+				<h3 class="text-center">Expense Lines</h3>
+				
+				<div class="jobs-table-header row">
+					<span class="jobs-table-header-col col">Category</span>
+					<span class="jobs-table-header-col col">Category Type</span>
+					<span class="jobs-table-header-col col">Merchant</span>
+					<span class="jobs-table-header-col col">Expense Type</span>
+					<span class="jobs-table-header-col col">Amount</span>
+				</div>
+				<div class="jobs-table-data large-form">
+					<div class="jobs-table-data large-form">
+							<div class="jobs-table-data-row row " ng-repeat="expenseLine in expenseReportDetails.Lines">
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeCategoryCode}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeCategoryCode}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.MerchantName}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeName}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.Amount}}</span>
+							</div>
+					</div>
+				</div>
+			  <div class="jobs-table-data small-form">
+				<div class="jobs-table-data-row row " ng-repeat="expenseLine in expenseReportDetails.Lines">
+				  <div class="row">
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeCategoryCode}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeCategoryCode}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.MerchantName}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.ExpenseTypeName}}</span>
+								<span class="jobs-table-data-col col">{{expenseLine.Amount}}</span>
+				  </div>
+				</div>
+			  </div>
+
+							
+				
+				</div>
+        <div class="bottom-action-buttons page-button-cntr">
+            <div class="row">
+                <div class="col col-60">
+                    <button type="button" class="button button-positive page-button" ui-sref="app.home">
+                        <span aria-hidden="true" class="ion-chevron-left"></span>
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+  </div>
+
+
+    </ion-content>
+</ion-view>

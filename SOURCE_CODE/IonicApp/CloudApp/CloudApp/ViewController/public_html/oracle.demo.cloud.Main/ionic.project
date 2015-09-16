@@ -1,0 +1,14 @@
+{
+  "name": "CSS",
+  "app_id": "",
+  "proxies": [
+	    {
+	      "path": "/ms_oauth",
+	      "proxyUrl": "http://unit23586.oracleads.com:7778/ms_oauth"
+	    },
+	    {
+	      "path": "/mobile",
+	      "proxyUrl": "http://unit23293.oracleads.com:7201/mobile"
+	    }
+	  ]
+}

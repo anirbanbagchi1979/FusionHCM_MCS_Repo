@@ -1,0 +1,84 @@
+<ion-modal-view class="search-modal">
+  <ion-header-bar class="bar-assertive">
+    <h1 class="title">Search</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeSearch()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="searchValue">
+      </label>
+    <!--   <label class="toggle col-10">
+      <input type="checkbox">
+      <div class="track">
+        <div class="handle"></div>
+      </div>
+    </label> -->
+    </div>
+
+    <div class="jobs-process-cntr" ng-show="searchValue">
+      <div class="jobs-heading">
+        <span class="jobs-heading-text" >SEARCH RESULTS</span>
+
+      </div>
+      <div class="jobs-table">
+        <div class="jobs-table-header row">
+          <span class="jobs-table-header-col col">Customer</span>
+          <span class="jobs-table-header-col col">Work Order</span>
+          <span class="jobs-table-header-col col" ng-show="isServiceWriter()">Assign To</span>
+          <span class="jobs-table-header-col col">Job Type</span>
+          <span class="jobs-table-header-col col" ng-show="isServiceWriter()">Warranty</span>
+          <span class="jobs-table-header-col col">Status</span>
+        </div>
+        <div class="large-form">
+          <div class="jobs-table-data">
+            <div class="jobs-table-data-row row " ng-repeat="job in searchData | searchJobs:searchValue">
+              <span class="jobs-table-data-col col">{{job.customer}}</span>
+              <a class="jobs-table-data-col col" ng-click="closeSearch()" ui-sref="app.jobs.triage({workOrderID : job.workOrder})">
+                  <span class="jobs-table-data-col col">{{job.workOrder}}</span>
+              </a>
+              <div class="jobs-table-data-col col" ng-show="isServiceWriter()">
+                <img class="profile-pic" ng-src="{{getAssignedPic(job.assignedTo)}}">
+                <div>{{job.assignedTo}}</div>
+              </div>
+              <div class="jobs-table-data-col col">
+                <img class="job-type-pic" ng-src="{{getJobTypeIcon(job.jobType)}}">
+                <div>{{job.jobType}}</div>
+              </div>
+              <span class="jobs-table-data-col col" ng-show="isServiceWriter()">{{job.warranty}}</span>
+              <span class="jobs-table-data-col col" ng-class="getStatusClass(job.status)">{{job.status}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="jobs-table-data small-form">
+          <div class="jobs-table-data-row row " ng-repeat="job in searchData | searchJobs:searchValue">
+            <div class="row">
+              <span class="jobs-table-data-col jobs-table-cust-name col">{{job.customer}}</span>
+              <span class="jobs-table-data-col jobs-table-cust-workorder col">{{job.workOrder}}</span>
+              <span class="jobs-table-data-col col" ng-show="isServiceWriter()">{{job.warranty}}</span>
+              <div class="jobs-table-data-col jobs-table-cust-jobtype col">
+                <img class="job-type-pic" ng-src="{{getJobTypeIcon(job.jobType)}}">
+                <div>{{job.jobType}}</div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="jobs-table-data-col col" ng-show="isServiceWriter()">
+                <img class="profile-pic" ng-src="{{getAssignedPic(job.assignedTo)}}">
+                <div>{{job.assignedTo}}</div>
+              </div>
+              <span class="jobs-table-data-col col" ng-class="getStatusClass(job.status)">{{job.status}}</span>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+  </ion-content>
+</ion-modal-view>

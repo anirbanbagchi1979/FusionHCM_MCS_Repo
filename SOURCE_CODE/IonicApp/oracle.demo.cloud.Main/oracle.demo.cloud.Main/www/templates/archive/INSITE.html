@@ -1,0 +1,191 @@
+<ion-view>
+
+  <ion-content id="jobintake" class="job-container">
+
+    <div class="progress-process-cntr">
+      <div class="intake-top-bar">
+
+        <div class="intake-train">
+          <div class="train-block" ng-repeat="step in steps" ng-click="setState($index)">
+            <div class="intake-train-stop">
+              <svg height="10" width="10">
+                <circle ng-class="getTrainClass($index)" r="4" cy="5" cx="5" />
+              </svg>
+              <span ng-class="getTrainClass($index)">{{steps[$index]}}</span>
+            </div>
+            <svg height="10" width="80" class="canvas-line" ng-if="$index < (steps.length-1)">
+              <line x1="0" y1="0" x2="100" y2="0" style="stroke:#515251;stroke-width:2" opacity="0.1" />
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row text-uppercase large-form text-center">
+        <h3>Work Order: {{selectedWO.workOrder}}</h3>
+      </div>
+      <div class="row text-uppercase small-form text-center">
+        <h4>Work Order: {{selectedWO.workOrder}}</h4>
+      </div>
+      <div class="Job-overview-main">
+        <h3 class="text-center">Job Overview</h3>
+        <div class="row">
+          <div class="col col-60 text-right Job-overview-title">Customer</div>
+          <div class="col col-60">{{selectedWO.customer}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-60 text-right Job-overview-title">ESN</div>
+          <div class="col col-60">{{selectedWO.esn}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-60 text-right Job-overview-title">Mileage</div>
+          <div class="col col-60">{{selectedWO.mileage|number:0}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-60 text-right Job-overview-title">Complaint</div>
+          <div class="col col-60">{{selectedWO.customerComplaint.generalSymptoms}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fault-code-table-cntr">
+      <div class="technician-table">
+        <div class="row text-uppercase large-form">
+          <h3>&nbsp;&nbsp;&nbsp;Fault codes &amp; symptoms</h3>
+        </div>
+        <div class="row text-uppercase small-form">
+          <h4>&nbsp;&nbsp;&nbsp;Fault codes &amp; symptoms</h4>
+        </div>
+        <div class="large-form">
+          <div class="technician-table-header row">
+            <span class="technician-table-header-col col">Prioritized</span>
+            <span class="technician-table-header-col col">Status</span>
+            <span class="technician-table-header-col col">Fault code</span>
+            <span class="technician-table-header-col col">Last Occurrence</span>
+            <span class="technician-table-header-col col">Count</span>
+            <span class="technician-table-header-col col">Lamp</span>
+            <span class="technician-table-header-col col">Description</span>
+          </div>
+        </div>
+        <div class="technician-table-data large-form">
+          <div class="technician-table-data-row row" ng-repeat="code in faultcodes">
+            <span class="technician-table-data-col col">
+              <label class="checkbox">
+                <input type="checkbox" ng-click="insertOrRemoveFromEDS($index)" ng-checked="isInEDS($index)>-1" ng-disabled="isDisabled($index)" />
+              </label>
+            </span>
+            <span class="technician-table-data-col col">{{code.status}}</span>
+            <span class="technician-table-data-col col">{{code.faultCode}}</span>
+            <span class="technician-table-data-col col">{{code.lastOccurrence}}</span>
+            <span class="technician-table-data-col col">{{code.count}}</span>
+            <span class="technician-table-data-col col">{{code.lamp}}</span>
+            <span class="technician-table-data-col col">{{code.description}}</span>
+          </div>
+        </div>
+        <div class="technician-table-data small-form row">
+          <div class="technician-table-data-row" ng-repeat="code in faultcodes">
+            <div class="row">
+              <span class="technician-table-data-col col">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="insertOrRemoveFromEDS($index)" ng-checked="isInEDS($index)>-1" ng-disabled="isDisabled($index)" />
+                </label>
+              </span>
+              <span class="technician-table-data-col col">{{code.status}}</span>
+              <span class="technician-table-data-col col">{{code.faultCode}}</span>
+            </div>
+            <div class="row">
+              <span class="technician-table-data-col col">{{code.lastOccurrence|limitTo: 16}}</span>
+              <span class="technician-table-data-col col">{{code.count}}</span>
+              <span class="technician-table-data-col col">{{code.lamp}}</span>
+            </div>
+          </div>
+          <div class="row">&nbsp;</div>
+          <div class="row">
+            <button type="button" class="button-block button form-button-negative">View All Fault Codes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fault-code-area fault-code-form-cntr">
+      <div class="row text-uppercase text-center large-form">
+        <h3>Enter Prioritized Fault Codes</h3>
+      </div>
+      <div class="row text-capitalize text-center small-form">
+        <h4>Enter Prioritized Fault Codes</h4>
+      </div>
+      <div class="fault-code-input">
+        <input type="text" placeholder="Fault Code 1" class="form-control" value="{{faultcodes[WOSession.edsArray[0]].faultCode}}" />
+      </div>
+      <div class="fault-code-input">
+        <input type="text" placeholder="Fault Code 2" class="form-control" value="{{faultcodes[WOSession.edsArray[1]].faultCode}}" />
+      </div>
+      <div class="fault-code-input">
+        <input type="text" placeholder="Fault Code 3" class="form-control" value="{{faultcodes[WOSession.edsArray[2]].faultCode}}" />
+      </div>
+
+      <div class="fault-code-buttons large-form">
+        <div class="row">
+          <button type="button" class="button form-button-negative form-button">Cancel</button>
+          <button type="button" class="button form-button-positive form-button">Save</button>
+        </div>
+        <div class="row">&nbsp;</div>
+      </div>
+      <div class="fault-code-buttons small-form">
+        <div class="row">
+          <button type="button" class="button form-button-negative form-button">Cancel</button>
+          <button type="button" class="button form-button-positive form-button">Save</button>
+        </div>
+        <div class="row">&nbsp;</div>
+      </div>
+
+      <div class="row col col-40"></div>
+    </div>
+    <div class="line-bar"></div>
+    <div class="row">&nbsp;</div>
+
+    <div class="bottom-action-buttons page-button-cntr large-form">
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-positive page-button" type="button" ui-sref="app.jobs.triage({workOrderID : selectedWO.workOrder})">
+            <span class="ion-chevron-left" aria-hidden="true"></span>
+            Back
+          </button>
+        </div>
+        <div class="col col-60 text-right">
+          <button ng-click="updateDSID()" class="button button-calm page-continue-button" type="button">Continue
+            <ion-spinner class="spinner-energized button-spinner" icon="lines" ng-show="showSpinner"></ion-spinner>
+            <span class="ion-chevron-right" aria-hidden="true" ng-hide="showSpinner"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-action-buttons small-form">
+      <div class="progress-process-cntr">
+        <div class="row">
+          <div class="col col-60">
+          <button type="button" class="button button-positive page-button" ui-sref="app.jobs.triage({workOrderID : selectedWO.workOrder})">
+            <span aria-hidden="true" class="ion-chevron-left"></span>
+            Back
+          </button>
+        </div>
+        <div class="col col-60">
+          <button type="button" class="button button-calm page-continue-button" ng-click="updateDSID()">
+
+            Continue
+            <ion-spinner class="spinner-energized button-spinner" icon="lines" ng-show="showSpinner"></ion-spinner>
+            <span aria-hidden="true" class="ion-chevron-right" ng-hide="showSpinner"></span>
+          </button>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

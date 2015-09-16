@@ -1,0 +1,82 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="slide-menu">Shop's Jobs</span>
+    </ion-nav-title>
+    <ion-content>
+    <div id="home" class="page-container">
+
+        <div class="jobs-process-cntr">
+            <div class="jobs-heading">
+                <span class="jobs-heading-text" ng-show="isServiceWriter()">SHOP JOBS IN PROGRESS</span>
+                <span class="jobs-heading-text" ng-show="isTechnician()">MY WORK ORDERS</span>
+                <button class="button icon-left ion-ios-plus-empty create-job-button" ng-show="isServiceWriter()" ui-sref="app.job.intake({jobId:'new'})">Create New Job</button>
+            </div>
+            <div class="jobs-table">
+                <div class="jobs-table-header row">
+                    <span class="jobs-table-header-col col">Customer</span>
+                    <span class="jobs-table-header-col col">Work Order</span>
+                    <span class="jobs-table-header-col col">Assign To</span>
+                    <span class="jobs-table-header-col col">Job Type</span>
+                    <span class="jobs-table-header-col col">Warranty</span>
+                    <span class="jobs-table-header-col col">Status</span>
+                </div>
+                <ion-scroll zooming="true" direction="y" style="height: 400px" class="large-form">
+                    <div class="jobs-table-data">
+                        <div class="jobs-table-data-row row " ng-repeat="job in shopjobs">
+                            <span class="jobs-table-data-col col">{{job.customer}}</span>
+                            <span class="jobs-table-data-col col">{{job.workorder}}</span>
+                            <div class="jobs-table-data-col col">
+                                <img class="profile-pic" ng-src="{{getProfilePic(job.assignedto)}}">
+                                <div>{{job.assignedto}}</div>
+                            </div>
+                            <div class="jobs-table-data-col col">
+                                <img class="job-type-pic" ng-src="{{getJobTypeIcon(job.jobType)}}">
+                                <div>{{job.jobType}}</div>
+                            </div>
+                            <span class="jobs-table-data-col col">{{job.warranty}}</span>
+                            <span class="jobs-table-data-col col" ng-class="getStatusClass(job.status)">{{job.status}}</span>
+                        </div>
+                    </div>
+                </ion-scroll>
+                <div class="jobs-table-data small-form">
+                    <div class="jobs-table-data-row row " ng-repeat="job in shopjobs">
+                        <div class="row">
+                            <span class="jobs-table-data-col jobs-table-cust-name col">{{job.customer}}</span>
+                            <span class="jobs-table-data-col jobs-table-cust-workorder col">{{job.workorder}}</span>
+                            <span class="jobs-table-data-col col">{{job.warranty}}</span>
+                            <div class="jobs-table-data-col jobs-table-cust-jobtype col">
+                                <img class="job-type-pic" ng-src="{{getJobTypeIcon(job.jobType)}}">
+                                <div>{{job.jobType}}</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="jobs-table-data-col col">
+                                <img class="profile-pic" ng-src="{{getProfilePic(job.assignedto)}}">
+                                <div>{{job.assignedto}}</div>
+                            </div>
+                            <span class="jobs-table-data-col col" ng-class="getStatusClass(job.status)">{{job.status}}</span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="jobs-heading">
+            <span class="jobs-heading-text">News</span>
+            <button class="button button-clear ">View All News</button>
+        </div>
+        <div class="news-section">
+
+            <div class="news-item" ng-repeat="newsItem in news">
+                <img class="news-bg" ng-src="{{newsItem.imgUrl}}">
+                <!-- <div class="news-headline">{{newsItem.headline}}</div>
+                <div class="news-date">{{newsItem.date}}</div> -->
+            </div>
+        </div>
+    </div>
+
+    </ion-content>
+</ion-view>
