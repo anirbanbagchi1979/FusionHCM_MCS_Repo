@@ -1,0 +1,15 @@
+{
+  "name" : "expensereportimages_ab",
+  "version" : "1.0.0",
+  "description" : "API to get image docs submitted with Expense Reports",
+  "main" : "expensereportimages_ab.js",
+  "dependencies": {
+       "async":"1.4.2"
+   },
+  "oracleMobile" : {
+    "dependencies" : {
+      "apis" : { },
+      "connectors" : { "/mobile/connector/DocCS_Connector_AB" :"1.0"}
+    }
+  }
+}
